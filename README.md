@@ -1,37 +1,17 @@
-# Miix700-OSX-Hackintosh-Clover
+# Seewo-MT21-DSD-OSX-Hackintosh-Clover
 
-## 配置信息（Miix4，Lenovo Ideapad Miix700-12isk）
+## 配置信息（MT21-DSD，Seewo MT21-DSD）
 
-| CPU    | Intel Core m3-6y30 (Skylake)             |
+| CPU    | Intel Core i3-6100 (Skylake)             |
 |:------:|:----------------------------------------:|
-| 核芯显卡   | HD515                                    |
+| 核芯显卡   | HD530                                    |
 | RAM    | 4GB DDR3                                 |
-| 键盘&触摸板 | Miix700 USB keyboard                     |
-| 触摸屏    | ELAN222F                                 |
-| 声卡     | ALC236                                   |
-| 屏幕     | 12英寸 2160x1440                           |
-| 硬盘     | 128GB SATA m.2 SSD                       |
-| 网卡&蓝牙  | DELL DW1820A 096JNT(`1028:0022`,`BCM94350ZAE`一切正常) （替换联想版本BCM94350ZAE无法驱动WIFI，DW1820A用08PKF4版本睡眠后死机） |
+| 声卡     | AC3165                                   |
+| 屏幕     | 74.9英寸 1920x1080                           |
+| 硬盘     | 128GB SATA SSD                       |
+| 网卡&蓝牙  | RTL8168 |
 
-## 正常工作
 
-1. CPU变频（其他CPU型号使用[one-key-cpufriend](https://github.com/stevezhengshiqi/one-key-cpufriend)生成对应的kext）
-
-2. 键盘&触摸板（键盘固件版本`V0010`,键盘映射按照需要手动调整，触摸板模拟鼠标工作）
-
-3. 外放耳机正常
-
-4. 麦克风
-
-5. **触摸屏(需要手动修改DSDT)**
-
-6. **电量显示(需要手动给DSDT打补丁)**
-
-7. 盒盖关屏（休眠不太理想）
-
-8. 亮度按键、音量按键（包括机身上的音量按键）  
-
-9. HiDPI，使用一键[HiDPI](https://github.com/xzhih/one-key-hidpi)脚本，在最后手动输入几个3:2分辨率，注意纵向分辨率最好不要超过`800`，避免出现雪花等问题。
 
 
 
@@ -250,20 +230,4 @@ Miix710、Miix720用户也可以参考这一方法来实现触摸，因为这一
    {
        Scope (_SB.PCI0.I2C1)
        {
-           Name (_ADR, 0x00150001)  // _ADR: Address
-           Method (_DSM, 4, Serialized)  // _DSM: Device-Specific Method
-           {
-               If (PCIC (Arg0))
-               {
-                   Return (PCID (Arg0, Arg1, Arg2, Arg3))
-               }
-
-               Return (Zero)
-           }
-       }
-   }
-```
-
-   再进行编译，如果没有错误，那就另存为AML文件，放在Clover中，重启就可以了。
-
-______
+           Name (_ADR, 
